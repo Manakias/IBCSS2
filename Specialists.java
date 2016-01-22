@@ -21,7 +21,7 @@ public class Specialists{
     };
     System.out.print(" and " + specs[count-1] + ".");
     for (int i=0; i<count; i++){
-      System.out.println("Enter the contact word of Specialist " + i);
+      System.out.println("Enter the contact word of Specialist " + (i+1));
       contact[i]=scan.nextLine();
     };
     System.out.println("You have entered the contact words of " + count + " Specialists. In order of entry, they are: ");
@@ -30,7 +30,10 @@ public class Specialists{
       System.out.print(contact[b] + ", ");
       b++;
     };
-    System.out.print(" and " + contact[count-1] + ".");
-    System.out.println(" Your contribution has been noted. Your IP has been logged and traced. Goodbye.");
+    System.out.print(" and " + contact[count-1] + ". ");
+    System.out.println("Which specialist do you want information on? Enter the number which they have been assigned to.");
+    int pointer;
+    pointer = Integer.parseInt(scan.nextLine());
+    System.out.println("This specialist's codename is " + specs[pointer-1] + " and their contact word is " + contact[pointer-1]);
   }
 }
