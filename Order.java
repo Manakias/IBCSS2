@@ -1,4 +1,4 @@
- public class Rando{
+ public class Order{
   
    public static int tener(){
       return (int) (10*Math.random()+1);
