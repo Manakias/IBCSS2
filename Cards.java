@@ -1,11 +1,9 @@
+import java.util.Scanner;
 public class Cards{
-  
   static int count=52; //the count represents the number of cards remaining in the deck
-  
   public static int rand(int high){
       return (int) (high*Math.random()+1);
     }
-  
   public static void shuffle(String[] the_deck, int switches){
     String temp;
     int a; int b;
@@ -17,7 +15,6 @@ public class Cards{
       the_deck[b-1] = temp;
     } 
   }
-  
   public static String deal(String[] the_deck){
     count=count-1;    
    return the_deck[count];
@@ -41,14 +38,49 @@ public class Cards{
     }
     else{
       char number = card.charAt(0);
-      return Character.getNumericValue(number);
-      
+      return Character.getNumericValue(number); 
     }
     }
-      
-      
-    
   //end homework
+  //Blackjack game, for homework due Feb 3
+    public static void playBlackjack(Integer card1, Integer card2, String[] deck, String[] dealt){
+      Scanner scan = new Scanner(System.in);
+      int cardValue = card1 + card2;
+      System.out.println("Your card value is " + cardValue);
+      System.out.println("Hit, or stand?");
+      String choice = scan.nextLine();{
+        if (choice.equals("hit")){
+          String newCard;
+          newCard = deal(deck);
+          int newCardValue = value(newCard);
+          cardValue = cardValue + newCardValue;
+        }
+        if (choice.equals("stand")){};
+        if (cardValue > 21){
+          System.out.println("Bust! You lose!");
+        }
+      }
+      if (cardValue <= 21){ 
+      System.out.println("Your card value is " + cardValue);
+        String[] dealerHand = new String[2];
+        dealerHand[0] = deal(deck);
+        dealerHand[1] = deal(deck);
+        int dealerValue = (value(dealerHand[0])) + (value(dealerHand[1]));
+        System.out.println("Dealer has a " + dealerHand[0] + " and a " + dealerHand[1] + ", " + dealerValue);
+        if (cardValue > dealerValue){
+          System.out.println("You Win!");
+          if (cardValue == 21){
+            System.out.println("Blackjack!");
+        }
+        }
+        if (dealerValue > cardValue){
+          System.out.println("You Lose!");
+        }
+        if (dealerValue == cardValue){
+          System.out.println("Push.");
+        }
+      }
+    }
   public static void main(String[] args){
    
     String[] deck = new String[52];
@@ -74,28 +106,16 @@ public class Cards{
         deck[ 13*i+j ]= cardName + " of " +suit[i];
       }
     }
-      
-  /*  for(int i=0; i<52; i++){
-        System.out.println(deck[i]);
-     }
-   */
-    shuffle(deck, 1000);
+    shuffle(deck, 100000);
+
     
-   // System.out.println("SHUFFLED");
-    
-   /* for(int i=0; i<52; i++){
-        System.out.println(deck[i]);
-      }
-    */
-    
-    String[] delt = new String[2];
+    String[] delt = new String[20];
     delt[0]=deal(deck);
     delt[1]=deal(deck);
-    
-    System.out.println(delt[0] + " and " + delt[1] + ", with " + count + " cards remaining.");
     int card1 = value(delt[1]);
     int card2 = value(delt[0]);
-    System.out.println("The total card value is " + (card1 + card2));
+    System.out.println("You have " + delt[0] + " and " + delt[1]);
+    playBlackjack(card1, card2, deck, delt);
   }
   }
     
