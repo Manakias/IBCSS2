@@ -57,6 +57,7 @@ public class Cards{
         }
         if (choice.equals("stand")){};
         if (cardValue > 21){
+          System.out.println("Your card value is " + cardValue);
           System.out.println("Bust! You lose!");
         }
       }
